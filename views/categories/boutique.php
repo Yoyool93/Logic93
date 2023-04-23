@@ -23,26 +23,32 @@
         <div class="row row-cols-auto" style="justify-content: center;">
             <?php 
               if ($categories != array()): ?>
-           
+           <?php // var_dump($categories) ?>
                 <?php foreach($categories as $produit): ?>
+                   
                     <div class="col">
-                        <a href="<?= BASE_DIR ?>/produits/details/<?= $produit['nom_produit'] ?>" style="text-decoration: none; color: black">
+                        <a href="<?= BASE_DIR ?>/produits/details/<?= $produit['slug_produit'] ?>" style="text-decoration: none; color: black">
                             <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="<?= BASE_DIR ?>/<?= $produit['image'] ?>" alt="<?= $produit['nom'] ?>">
+                                <img class="card-img-top" src="<?= $produit['image'] ?>" alt="<?= $produit['nom_produit'] ?>">
+
+
                                 <div class="card-body">
-                                    <h5 class="card-title"><?= $produit['nom'] ?></h5>
-                                        // <p class="card-text content-shortDesc">
-                                        // <?php
-                                         //  $maxLength = 60;
-                                         //  if (strlen($produit['marque']) > $maxLength) {
-                                          //     $lastSpace = strrpos(substr($produit['description'], 0, $maxLength), ' ');
-                                         //    $truncatedString = substr($produit['decription'], 0, $lastSpace);
-                                         //    echo $truncatedString . '...';
-                                        // } else {
-                                        //      echo $produit['description'];
-                                         // }
-                                         // ?>
-                                        //  </p>
+                                    <h5 class="card-title"><?= $produit['nom_produit'] ?></h5>
+                                   <h6> <?= $produit['marque'] ?> </h6>
+                                    
+                                      
+                                    <p class="card-text content-shortDesc">
+                                         <?php
+                                           $maxLength = 60;
+                                           if (strlen($produit['description']) > $maxLength) {
+                                               $lastSpace = strrpos(substr($produit['description'], 0, $maxLength), ' ');
+                                             $truncatedString = substr($produit['description'], 0, $lastSpace);
+                                             echo $truncatedString . '...';
+                                         } else {
+                                              echo $produit['description'];
+                                          }
+                                          ?>
+                                          </p>
 
                                 </div>
                                 <ul class="list-group list-group-flush">

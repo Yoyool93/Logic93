@@ -22,24 +22,24 @@
                 <div class="col">
                     <a href="<?= BASE_DIR ?>/produits/details/<?= $produit['slug_produit'] ?>" style="text-decoration: none; color: black">
                         <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="<?= $produit['imageproduit'] ?>" alt="<?= $produit['nomproduit'] ?>">
+                            <img class="card-img-top" src="<?= $produit['image'] ?>" alt="<?= $produit['nom_produit'] ?>">
                             <div class="card-body">
-                                <h5 class="card-title"><?= $produit['nomproduit'] ?></h5>
+                                <h5 class="card-title"><?= $produit['nom_produit'] ?></h5>
                                 <p class="card-text content-shortDesc">
                                     <?php
                                     $maxLength = 60;
-                                    if (strlen($produit['descproduit']) > $maxLength) {
-                                        $lastSpace = strrpos(substr($produit['descproduit'], 0, $maxLength), ' ');
-                                        $truncatedString = substr($produit['descproduit'], 0, $lastSpace);
+                                    if (strlen($produit['description']) > $maxLength) {
+                                        $lastSpace = strrpos(substr($produit['description'], 0, $maxLength), ' ');
+                                        $truncatedString = substr($produit['description'], 0, $lastSpace);
                                         echo $truncatedString . '...';
                                     } else {
-                                        echo $produit['descproduit'];
+                                        echo $produit['description'];
                                     }
                                     ?>
                                 </p>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item h6"><?= $produit['prixproduit'] ?>,00 €</li>
+                                <li class="list-group-item h6"><?= $produit['prix'] ?>,00 €</li>
                             </ul>
                         </div>
                     </a>

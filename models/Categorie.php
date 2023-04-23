@@ -18,10 +18,10 @@ class Categorie extends Model{
 
     public function getProduitFromCategorie(string $categories){
         $this->getConnection();   
-        $stmt = $this->_connexion->prepare("SELECT a.slug_produit, a.nom_produit, a.prix, a.stock, a.marque, a.description, a.slug_categorie, c.image as categorie FROM  produit as a INNER JOIN categorie as c ON a.nom_produit = c.slug_produit  WHERE c.categorie = :slug_categorie");
+        $stmt = $this->_connexion->prepare("SELECT p.slug_produit, p.nom_produit, p.prix, p.stock, p.marque, p.description, p.slug_categorie, p.image FROM produit as p INNER JOIN categorie as c ON p.slug_categorie = c.slug_categorie WHERE c.slug_categorie = :slug_categorie");
         $stmt->bindValue(':slug_categorie', $categories, PDO::PARAM_STR);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   
       //var_dump(getProduitFromCategorie); 

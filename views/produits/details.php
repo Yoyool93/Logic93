@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-md-7 col-lg-4 mb-5 mb-lg-0">
             <div class="beauty-card text-center shadow">
-                <img class="img-fluid m-5" src="<?= BASE_DIR ?>/<?= $produit['imageproduit'] ?>" alt="image produit <?= $produit['nomproduit'] ?>">
+                <img class="img-fluid m-5" src="<?= $produit['image'] ?>" alt="image produit <?= $produit['nom_produit'] ?>">
             </div>
             <div class="text-center mt-3">
                 <div class="btn-group" role="group" aria-label="Quantité">
@@ -13,11 +13,11 @@
              </div>
         <div class="col-lg-8">
             <div class="beauty-card text-start div-content-text p-5 fadeIn shadow">
-                <h1 class="h1 mb-0 text-primary"><?= $produit['nomproduit'] ?></h1>
+                <h1 class="h1 mb-0 text-primary"><?= $produit['nom_produit'] ?></h1>
               
-                <p class="mb-1 mt-2"><?= $produit['marqueproduit'] ?></p>
-                <h5 class="h5 mb-3 text-primary"><?= $produit['prixproduit'] ?>,00€</h5>
-                <p><?= $produit['descproduit'] ?></p>
+                <p class="mb-1 mt-2"><?= $produit['marque'] ?></p>
+                <h5 class="h5 mb-3 text-primary"><?= $produit['prix'] ?>,00€</h5>
+                <p><?= $produit['description'] ?></p>
             </div>
         </div>
     </div>
@@ -34,10 +34,10 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <img class="img-fluid" src="<?= BASE_DIR ?>/<?= $produit['imageproduit'] ?>" alt="image produit <?= $produit['nomproduit'] ?>">
+                        <img class="img-fluid" src="<?= $produit['image'] ?>" alt="image produit <?= $produit['nom_produit'] ?>">
                     </div>
                     <div class="col-md-6">
-                        <h1 class="h1"><?= $produit['nomproduit'] ?></h1>
+                        <h1 class="h1"><?= $produit['nom_produit'] ?></h1>
                         <h5>Quantité : <span id="quantite-affichage"></span></h5>
                         <h4 id="prix-total"></h4>
                     </div>
@@ -46,7 +46,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary" onclick="addToCart(<?= $produit['slug_produit'] ?>)">Confirmer <i class="fa fa-cart-shopping"></i></button>
+                <button type="button" class="btn btn-primary" onclick="addToCart('<?= $produit['slug_produit'] ?>')">Confirmer <i class="fa fa-cart-shopping"></i></button>
             </div>
         </div>
     </div>
@@ -56,17 +56,17 @@
     function prepareConfirm(quantite) {
         $('#quantite-affichage').text(quantite);
 
-        const prix = <?= $produit['prixproduit'] ?>;
+        const prix = <?= $produit['prix'] ?>;
         const prixTotal = quantite * prix;
         $('#prix-total').text(prixTotal + " €");
     }
 
-    function addToCart(articleId){
+    function addToCart(produitSlug){
         $.ajax({
             url: '<?= BASE_DIR ?>/views/paniers/add-to-cart.php',
             type: 'POST',
             data: {
-                articleId: articleId,
+                produitSlug: produitSlug,
                 quantite: $('#quantite').val()
             },
             success: function(response){

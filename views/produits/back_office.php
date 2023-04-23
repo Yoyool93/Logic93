@@ -20,12 +20,12 @@
                 <td>
                
                     <a href="<?= BASE_DIR ?>/produits/details/<?= $produit['slug_produit'] ?>" style="text-decoration: none; color: black">
-                        <img src="<?= BASE_DIR . "/" . $produit['image'] ?>" alt="<?= $produit['nom_produit'] ?>">
+                        <img src="<?= $produit['image'] ?>" style="height: 150px;" alt="<?= $produit['nom_produit'] ?>">
                     </a>
                 </td>
                 <td>
-                    <h5><?= $produit['slug_produit'];?></h5>
-                    <p> <?= $produit['image'];?></p>
+                    <h5><?= $produit['nom_produit'];?></h5>
+                    <p> <?= $produit['description'];?></p>
               
                 </td>
                 <td style="width: 10%">
