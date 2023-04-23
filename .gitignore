@@ -1,0 +1,5 @@
+# Fichiers d'environnement
+.idea/
+.env
+venv/
+options.php
