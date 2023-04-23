@@ -24,8 +24,8 @@ class Paniers extends Controller {
         $this->render('checkout', compact("check"));
     }
 
-    public function delete(int $id){
-        $this->render('delete', compact("id"));
+    public function delete(string $produitSlug){
+        $this->render('delete', compact("produitSlug"));
     }
 
 }

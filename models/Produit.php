@@ -25,7 +25,7 @@ class Produit extends Model{
     public function getProduitWithCategorie(){
         $this->getConnection();
 
-        $stmt = $this->_connexion->prepare("SELECT a.id, a.slug, a.nom, a.content, a.description, a.images, a.prix, c.nom as categorie, c.id as idCat FROM ". $this->table ." as a INNER JOIN categorie as c ON a.idCategorie = c.id");
+        $stmt = $this->_connexion->prepare("SELECT p.slug_produit, p.nom_produit, p.marque, p.description, p.image, p.prix, c.nom_categorie as categorie, c.slug_categorie as slugCat FROM ".$this->table." as p INNER JOIN categorie as c ON p.slug_categorie = c.slug_categorie");
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -1,5 +1,7 @@
 <?php
 $prixTotal = 0;
+
+//var_dump($_SESSION["cart"]);
 ?>
 
 <main class="content">
@@ -17,24 +19,25 @@ $prixTotal = 0;
         </tr>
         </thead>
         <tbody>
+            <?php // var_dump($panier) ; ?>
         <?php foreach($panier as $produit): ?>
             <tr>
-                <th scope="row"><a href="<?= BASE_DIR ?>/produits/details/<?= $produit['slug'] ?>" style="text-decoration: none; color: #00002d"><img src="<?= $produit['images'] ?>" alt="<?= $produit['nom'] ?>"></a></th>
-                <th scope="row"><a href="<?= BASE_DIR ?>/produits/details/<?= $produit['slug'] ?>" style="text-decoration: none; color: #00002d"><?= $produit['nom'] ?></a></th>
-                <td><p><?= $_SESSION['cart'][$produit['id']]["quantite"] ?></p></td>
+                <th scope="row"><a href="<?= BASE_DIR ?>/produits/details/<?= $produit['slug_produit'] ?>" style="text-decoration: none; color: #00002d"><img src="<?= $produit['image'] ?>" style="height:150px" alt="<?= $produit['nom_produit'] ?>"></a></th>
+                <th scope="row"><a href="<?= BASE_DIR ?>/produits/details/<?= $produit['slug_produit'] ?>" style="text-decoration: none; color: #00002d"><?= $produit['nom_produit'] ?></a></th>
+                <td><p><?= $_SESSION['cart'][$produit['slug_produit']]["quantite"] ?></p></td>
                 <td>
-                    <p><?= $produit['prix'] ?>,00€ x <?= $_SESSION['cart'][$produit['id']]["quantite"] ?></p>
+                    <p><?= $produit['prix'] ?>,00€ x <?= $_SESSION['cart'][$produit['slug_produit']]["quantite"] ?></p>
                     <br>
-                    <p class="fw-bolder"><?= $produit['prix'] * $_SESSION['cart'][$produit['id']]["quantite"] ?>,00€</p>
+                    <p class="fw-bolder"><?= $produit['prix'] * $_SESSION['cart'][$produit['slug_produit']]["quantite"] ?>,00€</p>
                 </td>
                 <td>
-                    <button id="<?= $produit['id'] ?>" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#idConfirmDelete<?= $produit['id'] ?>"><i class="fa-solid fa-trash"></i></button>
+                    <button id="<?= $produit['slug_produit'] ?>" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#idConfirmDelete<?= $produit['slug_produit'] ?>"><i class="fa-solid fa-trash"></i></button>
                 </td>
             </tr>
-            <?php $prixTotal += $produit['prix'] * $_SESSION['cart'][$produit['id']]["quantite"] ?>
+            <?php $prixTotal += $produit['prix'] * $_SESSION['cart'][$produit['slug_produit']]["quantite"] ?>
 
             <!-- Confirmation -->
-            <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="idConfirmDelete<?= $produit['id'] ?>" tabindex="-1" aria-labelledby="confirmDelete" aria-hidden="true">
+            <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="idConfirmDelete<?= $produit['slug_produit'] ?>" tabindex="-1" aria-labelledby="confirmDelete" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -44,18 +47,18 @@ $prixTotal = 0;
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img class="img-fluid" src="<?= BASE_DIR ?>/<?= $produit['images'] ?>" alt="image produit <?= $produit['nom'] ?>">
+                                    <img class="img-fluid" src="<?= $produit['image'] ?>" alt="image produit <?= $produit['nom_produit'] ?>">
                                 </div>
                                 <div class="col-md-6">
-                                    <h2 class="h2"><?= $produit['nom'] ?></h2>
-                                    <h5>Quantité : <?= $_SESSION['cart'][$produit['id']]["quantite"] ?></h5>
+                                    <h2 class="h2"><?= $produit['nom_produit'] ?></h2>
+                                    <h5>Quantité : <?= $_SESSION['cart'][$produit['slug_produit']]["quantite"] ?></h5>
                                 </div>
                             </div>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                            <button type="button" class="btn btn-danger" onclick="location.href='<?= BASE_DIR ?>/paniers/delete/<?= $produit['id'] ?>'">Confirmer <i class="fa-regular fa-trash-can"></i></button>
+                            <button type="button" class="btn btn-danger" onclick="location.href='<?= BASE_DIR ?>/paniers/delete/<?= $produit['slug_produit'] ?>'">Confirmer <i class="fa-regular fa-trash-can"></i></button>
                         </div>
                     </div>
                 </div>
@@ -67,8 +70,8 @@ $prixTotal = 0;
     <div class="d-flex">
         <button onclick="location.href='<?= BASE_DIR ?>/paniers/checkout'" type="button" class="btn btn-primary" style="max-height: 45px">Confirmer le panier</button>
         <div class="prix ms-auto">
-            <h4 class="h4 text-right" style="text-align: right"><?= $prixTotal ?>,00 € (HT)</h4>
-            <h4 class="h4 text-right"><?= $prixTotal * 1.2 ?>,00 € (TTC)</h4>
+            <h4 class="h4 text-right" style="text-align: right"><?= $prixTotal ?> € (HT)</h4>
+            <h4 class="h4 text-right"><?= $prixTotal * 1.2 ?> € (TTC)</h4>
         </div>
     </div>
     <?php else: ?>

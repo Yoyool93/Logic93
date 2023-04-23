@@ -17,19 +17,19 @@ $prixTotal = 0;
             <tbody>
             <?php foreach($check as $produit): ?>
                 <tr>
-                    <th scope="row"><a href="<?= BASE_DIR ?>/produits/details/<?= $produit['slug'] ?>" style="text-decoration: none; color: #00002d"><?= $produit['nom'] ?></a></th>
-                    <td><p><?= $_SESSION['cart'][$produit['id']]["quantite"] ?></p></td>
-                    <td><p class="fw-bolder"><?= $produit['prix'] * $_SESSION['cart'][$produit['id']]["quantite"] ?>,00€</p></td>
+                    <th scope="row"><a href="<?= BASE_DIR ?>/produits/details/<?= $produit['slug_produit'] ?>" style="text-decoration: none; color: #00002d"><?= $produit['nom_produit'] ?></a></th>
+                    <td><p><?= $_SESSION['cart'][$produit['slug_produit']]["quantite"] ?></p></td>
+                    <td><p class="fw-bolder"><?= $produit['prix'] * $_SESSION['cart'][$produit['slug_produit']]["quantite"] ?>,00€</p></td>
                 </tr>
-                <?php $prixTotal += $produit['prix'] * $_SESSION['cart'][$produit['id']]["quantite"] ?>
+                <?php $prixTotal += $produit['prix'] * $_SESSION['cart'][$produit['slug_produit']]["quantite"] ?>
             <?php endforeach ?>
             </tbody>
         </table>
 
         <div class="d-flex">
             <div class="prix ms-auto">
-                <h4 class="h4 text-right" style="text-align: right"><?= $prixTotal ?>,00 € (HT)</h4>
-                <h4 class="h4 text-right"><?= $prixTotal * 1.2 ?>,00 € (TTC)</h4>
+                <h4 class="h4 text-right" style="text-align: right"><?= $prixTotal ?>€ (HT)</h4>
+                <h4 class="h4 text-right"><?= $prixTotal * 1.2 ?> € (TTC)</h4>
             </div>
         </div>
     <?php else: ?>

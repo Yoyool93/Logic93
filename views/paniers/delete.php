@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-// Vérifier que l'produit existe dans le panier
-if (isset($_SESSION['cart'][$id])) {
-    unset($_SESSION['cart'][$id]);
+// Vérifier que le produit existe dans le panier
+if (isset($_SESSION['cart'][$produitSlug])) {
+    unset($_SESSION['cart'][$produitSlug]);
 }
 
 // Rediriger l'utilisateur vers la page du panier

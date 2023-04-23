@@ -8,15 +8,17 @@ class Panier extends Model{
     }
 
     public function getCartproduit(){
-        $ids = array_keys($_SESSION['cart']);
-        $idsString = implode(',', $ids);
-
+        $slugs = array_keys($_SESSION['cart']);
+        $slugs = array_map(function($slug) {
+            return '"' . str_replace('"', '\"', $slug) . '"';
+        }, $slugs);
+        $slugsString = implode(',', $slugs);
+        
         $this->getConnection();
-        $stmt = $this->_connexion->prepare("SELECT * FROM ". $this->table ." WHERE id IN (". $idsString .")");
-//        $stmt = $this->_connexion->prepare('SELECT * FROM produit WHERE id IN (:idsString)');
-//        $stmt->bindValue(':idsString', $idsString, PDO::PARAM_STR);
+        $stmt = $this->_connexion->prepare("SELECT * FROM ". $this->table ." WHERE slug_produit IN (". $slugsString .")");
         $stmt->execute();
-
+    
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
 }
