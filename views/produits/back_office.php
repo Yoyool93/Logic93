@@ -32,7 +32,7 @@
                     <p><?= $produit['prix'] ?>,00 €</p>
                 </td>
                 <td style="width: 15%">
-                    <button id="<?= $produit['slug_produit'] ?>" type="button" class="btn btn-warning" onclick="location.href='<?= BASE_DIR . "/produits/modifier_article/" . $produit['nom_produit'] ?>'"><i class="fa-solid fa-pen"></i></button>
+                    <button id="<?= $produit['slug_produit'] ?>" type="button" class="btn btn-warning" onclick="location.href='<?= BASE_DIR . "/produits/modifier_article/" . $produit['slug_produit'] ?>'"><i class="fa-solid fa-pen"></i></button>
                     <button id="<?= $produit['slug_produit'] ?>" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#idConfirmDelete<?= $produit['slug_produit'] ?>"><i class="fa-solid fa-trash"></i></button>
                 </td>
             </tr>

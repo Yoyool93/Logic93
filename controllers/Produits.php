@@ -70,19 +70,21 @@ class Produits extends Controller{
         $categories = $this->Categorie->getAll();
         $produit = $this->Produit->findBySlug($slug);
 
-        if (isset($_POST['nomArticle']) && isset($_POST['contentArticle']) && isset($_POST['descArticle']) && isset($_POST['imageArticle']) && isset($_POST['prixArticle']) && isset($_POST['idCategorie'])) {
+        if (isset($_POST['nomproduit']) && isset($_POST['marqueproduit']) && isset($_POST['descproduit']) && isset($_POST['imageproduit']) && isset($_POST['prixproduit']) && isset($_POST['slug_categorie'])) {
             // Tous les champs ont été remplis
-            $nom = $_POST['nomArticle'];
-            $content = $_POST['contentArticle'];
-            $description = $_POST['descArticle'];
-            $image = $_POST['imageArticle'];
-            $prix = $_POST['prixArticle'];
-            $idCategorie = $_POST['idCategorie'];
+            $nom = $_POST['nomproduit'];
+            $marque = $_POST['marqueproduit'];
+            $description = $_POST['descproduit'];
+            $image = $_POST['imageproduit'];
+            $prix = $_POST['prixproduit'];
+            $stock = $_POST['stockproduit'];
+            $slug_categorie = $_POST['slug_categorie'];
+            $slug_produit = $slug;
 
-            $this->Produit->updateArticle($produit["id"], $nom, $content, $description, $image, $prix, $idCategorie);
+            $this->Produit->updateProduit($slug_produit, $nom, $marque, $description, $image, $prix, $stock, $slug_categorie);
             header("location:". BASE_DIR ."/produits/back_office");
         } else {
-            $this->render('update_article', compact('categories', 'produit'));
+            $this->render('modifier_article', compact('categories', 'produit'));
         }
     }
 

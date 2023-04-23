@@ -62,17 +62,17 @@ class Produit extends Model{
         $stmt->execute();
     }
 
-    public function updateProduit(int $id, string $nom, string $content, string $description, string $image, int $prix, int $idCategorie){
+    public function updateProduit(string $slug_produit, string $nom, string $marque, string $description, string $image, int $prix,int $stock, string $slug_categorie){
         $this->getConnection();
-        $stmt = $this->_connexion->prepare("UPDATE ". $this->table ." SET slug = :slug, nom = :nom, content = :content, description = :description, images = :images, prix = :prix, idCategorie = :idCategorie WHERE id = :id");
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->bindValue(':slug', $this->slugify($nom), PDO::PARAM_STR);
+        $stmt = $this->_connexion->prepare("UPDATE ". $this->table ." SET nom_produit = :nom, marque = :marque, description = :description, image = :image, prix = :prix,stock=:stock, slug_categorie = :slug_categorie WHERE slug_produit = :slug_produit");
+        $stmt->bindValue(':slug_produit', $slug_produit, PDO::PARAM_STR);
         $stmt->bindValue(':nom', $nom, PDO::PARAM_STR);
-        $stmt->bindValue(':content', $content, PDO::PARAM_STR);
+        $stmt->bindValue(':marque', $marque, PDO::PARAM_STR);
         $stmt->bindValue(':description', $description, PDO::PARAM_STR);
-        $stmt->bindValue(':images', $image, PDO::PARAM_STR);
+        $stmt->bindValue(':image', $image, PDO::PARAM_STR);
         $stmt->bindValue(':prix', $prix, PDO::PARAM_INT);
-        $stmt->bindValue(':idCategorie', $idCategorie, PDO::PARAM_INT);
+        $stmt->bindValue(':stock', $stock, PDO::PARAM_INT);
+        $stmt->bindValue(':slug_categorie', $slug_categorie, PDO::PARAM_STR);
         $stmt->execute();
     }
 
