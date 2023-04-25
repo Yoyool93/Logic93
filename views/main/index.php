@@ -69,26 +69,26 @@
         <div class="row row-cols-auto" style="justify-content: center;">
             <?php foreach($produits as $produit): ?>
                 <div class="col">
-                    <a href="<?= BASE_DIR ?>/produits/details/<?= $produit['slug'] ?>" style="text-decoration: none; color: black">
+                    <a href="<?= BASE_DIR ?>/produits/details/<?= $produit['slug_produit'] ?>" style="text-decoration: none; color: black">
                         <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="<?= $produit['images'] ?>" alt="<?= $produit['nom'] ?>">
+                            <img class="card-img-top" src="<?= $produit['image'] ?>" alt="<?= $produit['nom_produit'] ?>">
                             <div class="card-body">
-                                <h5 class="card-title"><?= $produit['nom'] ?></h5>
+                                <h5 class="card-title"><?= $produit['nom_produit'] ?></h5>
                                 <p class="card-text content-shortDesc">
                                     <?php
                                     $maxLength = 60;
-                                    if (strlen($produit['content']) > $maxLength) {
-                                        $lastSpace = strrpos(substr($produit['content'], 0, $maxLength), ' ');
-                                        $truncatedString = substr($produit['content'], 0, $lastSpace);
+                                    if (strlen($produit['marque']) > $maxLength) {
+                                        $lastSpace = strrpos(substr($produit['marque'], 0, $maxLength), ' ');
+                                        $truncatedString = substr($produit['marque'], 0, $lastSpace);
                                         echo $truncatedString . '...';
                                     } else {
-                                        echo $produit['content'];
+                                        echo $produit['marque'];
                                     }
                                     ?>
                                 </p>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <a href="<?= BASE_DIR ?>/categories/boutique/<?= $produit['idCat'] ?>" style="text-decoration: none;"><li class="list-group-item affiche-categorie"><?= $produit['categorie'] ?></li></a>
+                                <a href="<?= BASE_DIR ?>/categories/boutique/<?= $laCategorie["nom_categorie"] ?>" style="text-decoration: none;"><li class="list-group-item affiche-categorie"><?= $produit['slug_produit'] ?></li></a>
                                 <li class="list-group-item h6"><?= $produit['prix'] ?>,00 €</li>
                             </ul>
                         </div>
