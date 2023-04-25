@@ -88,7 +88,7 @@
                                 </p>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <a href="<?= BASE_DIR ?>/categories/boutique/<?= $laCategorie["nom_categorie"] ?>" style="text-decoration: none;"><li class="list-group-item affiche-categorie"><?= $produit['slug_produit'] ?></li></a>
+                                <a href="<?= BASE_DIR ?>/categories/boutique/<?= $laCategorie["nom_categorie"] ?>" style="text-decoration: none;"><li class="list-group-item affiche-categorie"><?= $produit['description'] ?></li></a>
                                 <li class="list-group-item h6"><?= $produit['prix'] ?>,00 €</li>
                             </ul>
                         </div>
