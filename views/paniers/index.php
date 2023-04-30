@@ -19,7 +19,7 @@ $prixTotal = 0;
         </tr>
         </thead>
         <tbody>
-            <?php // var_dump($panier) ; ?>
+            <? //php // var_dump($panier) ; ?>
         <?php foreach($panier as $produit): ?>
             <tr>
                 <th scope="row"><a href="<?= BASE_DIR ?>/produits/details/<?= $produit['slug_produit'] ?>" style="text-decoration: none; color: #00002d"><img src="<?= $produit['image'] ?>" style="height:150px" alt="<?= $produit['nom_produit'] ?>"></a></th>
@@ -35,7 +35,6 @@ $prixTotal = 0;
                 </td>
             </tr>
             <?php $prixTotal += $produit['prix'] * $_SESSION['cart'][$produit['slug_produit']]["quantite"] ?>
-
             <!-- Confirmation -->
             <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="idConfirmDelete<?= $produit['slug_produit'] ?>" tabindex="-1" aria-labelledby="confirmDelete" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">

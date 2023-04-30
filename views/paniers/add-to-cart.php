@@ -9,5 +9,5 @@ if(isset($_POST['produitSlug']) && isset($_POST['quantite'])){
         $_SESSION['cart'][$produitSlug] = ['quantite' => $quantite];
     } else {
         $_SESSION['cart'][$produitSlug]['quantite'] += $quantite;
-    }
+    }    
 }

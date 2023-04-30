@@ -63,7 +63,8 @@
 
     function addToCart(produitSlug){
         $.ajax({
-            url: '<?= BASE_DIR ?>/views/paniers/add-to-cart.php',
+            url: '<?= BASE_DIR ?>/paniers/addToCart',
+            // url: '<?= BASE_DIR ?>/views/paniers/add-to-cart.php',
             type: 'POST',
             data: {
                 produitSlug: produitSlug,
