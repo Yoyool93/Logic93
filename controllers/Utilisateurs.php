@@ -16,6 +16,7 @@ class Utilisateurs extends Controller {
 
     public function login(){
         $this->loadModel('Utilisateur');
+        $this->loadModel('Panier');
 
         if (isset($_SESSION['user'])){
             header('Location: '.BASE_DIR);
@@ -37,6 +38,11 @@ class Utilisateurs extends Controller {
                 }else{
                     // Si l'utilisateur a été trouvé, on le connecte en enregistrant ses informations dans la session
                     $_SESSION['user'] = $user;
+
+                    // Ajout du panier existant a la base de données
+                    $this->Panier->addCartSessionToCartBdd($user['email']);
+                    // Suppression du panier en session actuel
+                    $_SESSION['cart'] = array();
 
                     if (isset($_SERVER['HTTP_REFERER'])){
                         // Redirection vers l'URL de la page précédemment visitée par l'utilisateur

@@ -7,14 +7,23 @@ class Paniers extends Controller {
      * @return void
      */
     public function index(){
-        if (!empty($_SESSION['cart'])){
-            $this->loadModel('Panier');
-            $panier = $this->Panier->getCartproduit();
+        if(isset($_SESSION['user'])){
+            $this->loadModel("Panier");
+            $user = $_SESSION['user']["email"];
+            $panier=$this->Panier->getAllProduitsPanier($user);
             $this->render('index', compact("panier"));
-        } else {
-            $this->render('index');
         }
+
+        else{
+            if (!empty($_SESSION['cart'])){
+                $this->loadModel('Panier');
+                $panier = $this->Panier->getCartproduit();
+                $this->render('index', compact("panier"));
+            } else {
+                $this->render('index');
+            }
     }
+}
 
     public function checkout(){
         $this->loadModel('Panier');
@@ -25,7 +34,17 @@ class Paniers extends Controller {
     }
 
     public function delete(string $produitSlug){
-        $this->render('delete', compact("produitSlug"));
+        if(isset($_SESSION['user'])){
+            $this->loadModel("Panier");
+            $user = $_SESSION['user']["email"];
+            $this->Panier->deleteProduitPanier($produitSlug,$user);
+            $this->render('index');
+        }
+        else{
+            $this->render('delete', compact("produitSlug"));
+        }
+
+        
     }
 
     public function addToCart(){
@@ -41,9 +60,7 @@ class Paniers extends Controller {
             }else{
                 $this->Panier->ajouterPanier($user, $quantite, $produit);
             }
-        }
-
-        if(isset($_POST['produitSlug']) && isset($_POST['quantite'])){
+        }else{
             $produitSlug = $_POST['produitSlug'];
             $quantite = $_POST['quantite'];
     
