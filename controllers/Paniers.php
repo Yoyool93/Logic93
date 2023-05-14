@@ -22,7 +22,7 @@ class Paniers extends Controller {
             } else {
                 $this->render('index');
             }
-    }
+        }
 }
 
     public function checkout(){
@@ -73,4 +73,56 @@ class Paniers extends Controller {
         }
 
 }
+
+ public function RemoveFromCart (string $produitSlug){
+    if(isset($_SESSION['user'])){
+        $this->loadModel("Panier");
+        $user = $_SESSION['user']["email"];
+        
+        $produit=$this->Panier->getProduitPanier($produitSlug,$user);
+        $quantite=$produit['quantite'];
+        if($quantite>1){
+            $this->Panier->updatePanier($produitSlug,$user,-1);
+        }
+        else{
+            $this->Panier->deleteProduitPanier($produitSlug,$user);
+
+        }
+    }else{
+    if(!empty($_SESSION['cart'][$produitSlug])){
+        if($_SESSION['cart'][$produitSlug]['quantite']>1){
+            $_SESSION['cart'][$produitSlug]['quantite']--;
+        }
+        else{
+            unset($_SESSION['cart'][$produitSlug]);
+            
+        }
+    }
+        
+}
+header("location:". BASE_DIR . "/paniers");
+ }
+
+
+public function UpToCart(string $produitSlug){
+    if(isset($_SESSION['user'])){
+        $this->loadModel("Panier");
+        $user = $_SESSION['user']["email"];
+        $this->Panier->updatePanier($produitSlug,$user,1);
+    }
+    else{
+    if(!empty($_SESSION['cart'][$produitSlug])){
+            $_SESSION['cart'][$produitSlug]['quantite']++;
+
+    }
+     
+}
+header("location:". BASE_DIR . "/paniers");
+
+}
+
+
+
+
+
 }

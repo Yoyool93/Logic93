@@ -36,6 +36,13 @@ $prixTotal = 0;
                 </td>
                 <td>
                     <button id="<?= $produit['slug_produit'] ?>" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#idConfirmDelete<?= $produit['slug_produit'] ?>"><i class="fa-solid fa-trash"></i></button>
+
+                    <button id="up-<?= $produit['slug_produit'] ?>"
+                    onclick="location.href='<?= BASE_DIR ?>/paniers/UpToCart/<?= $produit['slug_produit'] ?>'"
+                    type="button" class="btn btn-success"><i class="fa-solid fa-cart-plus"></i></button>
+
+                    <button id="down-<?= $produit['slug_produit'] ?>" onclick="location.href='<?= BASE_DIR ?>/paniers/RemoveFromCart/<?= $produit['slug_produit'] ?>'" 
+                    type="button" class="btn btn-warning"><i class="fa-solid fa-cart-arrow-down"></i></button>
                 </td>
             </tr>
             <?php $prixTotal +=  $produit['prix'] * $quantite ?>
