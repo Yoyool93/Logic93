@@ -82,7 +82,13 @@ class Produits extends Controller{
             $slug_produit = $slug;
 
             $this->Produit->updateProduit($slug_produit, $nom, $marque, $description, $image, $prix, $stock, $slug_categorie);
+
+            
+
+
+
             header("location:". BASE_DIR ."/produits/back_office");
+
         } else {
             $this->render('modifier_article', compact('categories', 'produit'));
         }

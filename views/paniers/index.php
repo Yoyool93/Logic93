@@ -78,7 +78,8 @@ $prixTotal = 0;
     </table>
 
     <div class="d-flex">
-        <button onclick="location.href='<?= BASE_DIR ?>/paniers/checkout'" type="button" class="btn btn-primary" style="max-height: 45px">Confirmer le panier</button>
+        <button onclick="location.href='<?= BASE_DIR ?>/produit_commandes'" type="button" class="btn btn-primary" style="max-height: 45px">Confirmer le panier</button>
+        
         <div class="prix ms-auto">
             <h4 class="h4 text-right" style="text-align: right"><?= $prixTotal ?> € (HT)</h4>
             <h4 class="h4 text-right"><?= $prixTotal * 1.2 ?> € (TTC)</h4>

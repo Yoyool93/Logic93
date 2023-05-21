@@ -88,7 +88,15 @@ class Panier extends Model{
         return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: null;
     }
     
+      
+        public function deletePanier(string $email){
+            $stmt = $this->_connexion->prepare("DELETE from ". $this->table ." WHERE `email_utilisateur` = :email");
+            $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+            $stmt->execute();
+        }
+        
     
+
 
 
 
