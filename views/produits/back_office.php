@@ -7,6 +7,7 @@
         <tr>
             <th scope="col">Image</th>
             <th scope="col">Nom</th>
+            <th scope="col">Stock</th>
             <th scope="col">Prix</th>
             <th scope="col">Action </th>
         </tr>
@@ -27,6 +28,9 @@
                     <h5><?= $produit['nom_produit'];?></h5>
                     <p> <?= $produit['description'];?></p>
               
+                </td>
+                <td style="width: 10%">
+                    <p><?= $produit['stock'] ?></p>
                 </td>
                 <td style="width: 10%">
                     <p><?= $produit['prix'] ?>,00 €</p>

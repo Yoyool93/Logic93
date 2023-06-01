@@ -10,6 +10,7 @@ class Produit_commandes extends Controller {
         if(isset($_SESSION['user'])){
             $this->loadModel("Produit_commande");
             $this->loadModel("Panier");
+            $this->loadModel("Produit");
             $user = $_SESSION['user']["email"];
 
             $produitDansPanier =$this->Panier->getAllProduitsPanier($user);
@@ -23,17 +24,18 @@ class Produit_commandes extends Controller {
                 $quantite=$produit["quantite"];
                
                 $this->Produit_commande->SauvegardePanier($produitSlug,$prix,$quantite,$user,$refCommande);
-
+                $this->Produit->updateStockProduit($produitSlug,$quantite);
+                echo $produitSlug;
+                
             }
             $produit_commande =$this->Produit_commande->getAllProduitsCommande($user, $refCommande);
             $this->Panier->deletePanier($user);
             
 
            $this->render('index', compact("produit_commande"));
-
-
-
         }
     } 
-} 
 
+   
+
+}

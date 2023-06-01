@@ -103,8 +103,9 @@ class Produits extends Controller{
         $this->forAdmin();
         $this->loadModel("Produit");
 
-        $produits = $this->Produit->getProduitWithCategorie();
-
+        $produits = $this->Produit->getAll();
+        
+    
         $this->render('back_office', compact('produits'));
     }
 

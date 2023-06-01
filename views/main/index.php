@@ -74,8 +74,15 @@
                             <img class="card-img-top" src="<?= $produit['image'] ?>" alt="<?= $produit['nom_produit'] ?>">
                             <div class="card-body">
                                 <h5 class="card-title"><?= $produit['nom_produit'] ?></h5>
+                                <?php
+                                    if ($produit['stock'] <=3 ){
+                                        echo "<p style='color:red' class='card-text'> Produit bientot indisponible il reste : ". $produit['stock'] ." produits</p>";
+                                        }
+                                ?>
                                 <p class="card-text content-shortDesc">
+
                                     <?php
+                                 
                                     $maxLength = 60;
                                     if (strlen($produit['marque']) > $maxLength) {
                                         $lastSpace = strrpos(substr($produit['marque'], 0, $maxLength), ' ');

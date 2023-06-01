@@ -25,7 +25,7 @@ class Produit extends Model{
     public function getProduitWithCategorie(){
         $this->getConnection();
 
-        $stmt = $this->_connexion->prepare("SELECT p.slug_produit, p.nom_produit, p.marque, p.description, p.image, p.prix, c.nom_categorie as categorie, c.slug_categorie as slugCat FROM ".$this->table." as p INNER JOIN categorie as c ON p.slug_categorie = c.slug_categorie");
+        $stmt = $this->_connexion->prepare("SELECT p.slug_produit, p.nom_produit, p.marque, p.description, p.image, p.prix, c.nom_categorie as categorie, p.stock, c.slug_categorie as slugCat FROM ".$this->table." as p INNER JOIN categorie as c ON p.slug_categorie = c.slug_categorie WHERE p.stock >0" );
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -39,14 +39,6 @@ class Produit extends Model{
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getProduitsByCategoryId(int $categoryId) {
-        $this->getConnection();
-        $stmt = $this->_connexion->prepare("SELECT a.id, a.slug, a.nom, a.content, a.description, a.images, a.prix, c.nom as categorie, c.id as idCat FROM ". $this->table ." as a INNER JOIN categorie as c ON a.idCategorie = c.id WHERE c.id = :categoryId");
-        $stmt->bindValue(':categoryId', $categoryId, PDO::PARAM_INT);
-        $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 
     public function addNewProduit(string $nom, string $prix, string $stock, string $marque,string $description, string $slug_categorie, string $image){
         $this->getConnection();
@@ -91,5 +83,17 @@ class Produit extends Model{
         } catch (PDOException $e) {
             return false;
         }
+    }
+
+
+    public function updateStockProduit(string $slug_produit,int $quantite){
+        $this->getConnection();
+        $stmt = $this->_connexion->prepare("UPDATE ". $this->table ." SET stock= stock - :quantite WHERE slug_produit = :slug_produit");
+        $stmt->bindValue(':slug_produit', $slug_produit, PDO::PARAM_STR);
+        $stmt->bindValue(':quantite', $quantite, PDO::PARAM_INT);
+        $stmt->execute();
+        //$errorInfo = $stmt->errorInfo();
+        //print_r($errorInfo);    
+
     }
 }
