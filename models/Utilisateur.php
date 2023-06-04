@@ -21,7 +21,7 @@ class Utilisateur extends Model{
 
     public function createUser(string $name, string $email, string $prenom , string $adresse ,string  $ville, int $cp, string $mdp){
         $this->getConnection();
-        $stmt = $this->_connexion->prepare("INSERT INTO ". $this->table ." ( email,nom,prenom,adresse,ville,code_postal,mdp,admin) VALUES (:email, :nom, :prenom, :adresse, :ville , :cp , :mdp , 1)");
+        $stmt = $this->_connexion->prepare("INSERT INTO ". $this->table ." ( email,nom,prenom,adresse,ville,code_postal,mdp,admin) VALUES (:email, :nom, :prenom, :adresse, :ville , :cp , :mdp , 0)");
         $stmt->BindValue(":email", $email, PDO::PARAM_STR);
         $stmt->BindValue(":nom", $name, PDO::PARAM_STR);
         $stmt->BindValue(":prenom", $prenom, PDO::PARAM_STR);
