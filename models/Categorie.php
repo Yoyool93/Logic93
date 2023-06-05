@@ -26,5 +26,5 @@ class Categorie extends Model{
   
       //var_dump(getProduitFromCategorie); 
       
-    }
+    }//
 }

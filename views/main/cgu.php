@@ -21,10 +21,7 @@
         <p>Logic 93 s'efforce de maintenir ce site web à jour et de s'assurer qu'il est accessible en permanence, mais ne peut garantir que le site sera exempt d'erreurs ou de temps d'indisponibilité. Logic 93 ne sera pas responsable des dommages causés par l'utilisation ou l'impossibilité d'utiliser ce site, y compris les dommages indirects, fortuits ou consécutifs.</p>
     </div>
 
-    <div class="content-txt-paragraphe">
-        <h2 class="h2 mb-3">Liens vers d'autres sites</h2>
-        <p>Ce site peut contenir des liens vers d'autres sites qui ne sont pas gérés par Logic 93. Logic 93 n'est pas responsable du contenu de ces sites et ne peut être tenu responsable des dommages causés par l'utilisation ou l'impossibilité d'utiliser ces sites.</p>
-    </div>
+    
 
     <div class="content-txt-paragraphe">
         <h2 class="h2 mb-3">Protection des données personnelles</h2>

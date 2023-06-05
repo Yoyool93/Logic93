@@ -62,7 +62,7 @@
             </ul>
         </div>
         <?php if (isset($_SESSION['user'])): ?>
-            <button type="button" class="btn btn-primary" id="btn-user-infos" data-bs-container="body" data-bs-toggle="popover" data-bs-title="Vos informations" data-bs-placement="bottom" data-bs-content="Nom : <?= $_SESSION['user']["nom"] ?> | Mail : <?= $_SESSION['user']["email"]?>">
+            <button type="button" class="btn btn-primary" id="btn-user-infos" data-bs-container="body" data-bs-toggle="popover" data-bs-title="Vos informations" data-bs-placement="bottom" data-bs-content= "Prenom : <?=$_SESSION['user']["prenom"]?>  | Nom : <?= $_SESSION['user']["nom"] ?> | Mail : <?= $_SESSION['user']["email"]?> ">
                 <i class="fa fa-solid fa-user"></i>
             </button>
             <a class="user ico_nav" href="<?= BASE_DIR ?>/utilisateurs/logout"><i class="fa-solid fa-right-from-bracket"></i></a>

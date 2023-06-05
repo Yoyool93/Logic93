@@ -96,16 +96,5 @@ class Panier extends Model{
         }
         
     
-
-
-
-
-
 }
-
-
-
-
-
-
 
